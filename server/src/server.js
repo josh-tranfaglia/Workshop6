@@ -7,7 +7,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 // Creates an Express server.
 var app = express();
+
 app.use(bodyParser.text());
+// You run the server from `server`, so `../client/build` is `server/../clident/build`.
+// '..' means "go up one directory", so this translates into `client/build`!
+app.use(express.static('../client/build'));
 
 // Defines what happens when it receives the `GET /` request
 app.get('/', function (req, res) {
