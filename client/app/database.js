@@ -182,14 +182,6 @@ export function deleteDocument(collectionName, id) {
 }
 
 /**
- * Reset our browser-local database.
- */
-export function resetDatabase() {
-  localStorage.setItem('facebook_data', JSON.stringify(initialData));
-  data = JSONClone(initialData);
-}
-
-/**
  * Returns an entire object collection.
  */
 export function getCollection(collectionName) {
@@ -203,9 +195,13 @@ export class ResetDatabase extends React.Component {
   render() {
     return (
       <button className="btn btn-default" type="button" onClick={() => {
-        resetDatabase();
-        window.alert("Database reset! Refreshing the page now...");
-        document.location.reload(false);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/resetdb');
+        xhr.addEventListener('load', function() {
+          window.alert("Database reset! Refreshing the page now...");
+          document.location.reload(false);
+        });
+        xhr.send();
       }}>Reset Mock DB</button>
     );
   }
