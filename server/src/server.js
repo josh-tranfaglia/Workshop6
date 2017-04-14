@@ -66,16 +66,6 @@ app.get('/user/:userid/feed', function(req, res) {
   }
 });
 
-/**
- * Get the feed data for a particular user.
- */
-app.get('/user/:userid/feed', function(req, res) {
-  // URL parameters are stored in req.params
-  var userid = req.params.userid;
-  // Send response.
-  res.send(getFeedData(userid));
-});
-
 // Handle POST /reverse [data]
 app.post('/reverse', function (req, res) {
   // If the request came with text, then the text() middleware handled it
